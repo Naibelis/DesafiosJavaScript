@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <header>
+      <h1>Carrito de compras</h1>
+    </header>
+
+    <section id="serviciosDisponibles" style="border: cornflowerblue; margin: 5px 0 5px 0;">
+      <h2>Servicios Disponibles</h2>
+      <button id="mostrarServicios">Mostrar</button>
+    </section>
+    
+    <section>
+      <label for="cliente">Cliente:</label>
+      <input type="text" name="cliente" id="cliente">
+      <h2>
+        Cantidad de elementos en el carrito: <span id="cantidadCarrito">0</span>
+      </h2>
+      <button id="agregarItems">Agregar items</button>
+      <h2>Items:</h2>
+    </section>
+    <section>
+      <p>Muchas gracias <span style="color: blueviolet; font-weight: bold;" id="nombreCliente"></span> por preferirnos</p>
+    </section>
+    <script src="js/Eventos.js"></script>
+  </body>
+</html>
