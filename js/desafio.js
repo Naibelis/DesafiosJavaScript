@@ -12,21 +12,19 @@ class ServicioCanino {
     }
   }
 
-  imprimir(carrito) {
-    const titulo = document.createElement("h2");
-    const datosIva = document.createElement("p");
-    const datosTurno = document.createElement("p");
-    titulo.innerHTML = ` SERVICIOS CANINOS: ${this.tipo.toUpperCase()} `;
-    datosIva.innerHTML = `El precio con IVA (si no está exento) es: ${this.precio}`;
-    datosTurno.innerHTML = `El turno en que se prestará el servicio: ${this.turno}`;
-    carrito.appendChild(titulo);
-    carrito.appendChild(datosIva);
-    carrito.appendChild(datosTurno);
+  imprimir() {
+    const container = $("<div></div>").append(
+      `<h2>SERVICIOS CANINOS: ${this.tipo.toUpperCase()}</h2>
+      <p>El precio con IVA (si no está exento) es: ${this.precio}</p>
+      <p>El turno en que se prestará el servicio: ${this.turno}</p>`
+    );
+
+    $("#itemsCarrito").append(container);
   }
 }
 
 //Declaramos un array de productos para almacenar objetos
-const agregar = () => {
+const agregar = (e) => {
   const llenarArreglo = (cosa) => {
     const cant = prompt("Indique cuantos servicios va a registrar: ");
 
@@ -65,27 +63,20 @@ const agregar = () => {
     return 0;
   });
 
-  const carrito = document.createElement("div");
   for (const ServicioCanino of ServiciosCaninos) {
     ServicioCanino.sumarIva();
-    ServicioCanino.imprimir(carrito);
+    ServicioCanino.imprimir();
   }
 
   alert(`Se ha impreso la información ingresada`);
 
-  document.body.appendChild(carrito);
-  const cantidadCarrito = document.getElementById("cantidadCarrito");
-  cantidadCarrito.innerHTML = ServiciosCaninos.length;
+  $("#cantidadCarrito").text(ServiciosCaninos.length);
 };
 
-const botonAgregarItems = document.getElementById("agregarItems");
-botonAgregarItems.addEventListener("click", agregar);
+$("#agregarItems").on("click", agregar);
 
-const nombreCliente = document.getElementById("nombreCliente");
-const clienteInput = document.getElementById("cliente");
-
-clienteInput.addEventListener("change", (e) => {
-  nombreCliente.innerHTML = e.target.value;
+$("#cliente").on("change", (e) => {
+  $("#nombreCliente").text(e.target.value);
 });
 
 const servicios = [
@@ -103,21 +94,13 @@ const servicios = [
   },
 ];
 
-const serviciosDisponibles = document.getElementById("serviciosDisponibles");
-const mostrarSercicios = document.getElementById("mostrarServicios");
-mostrarSercicios.addEventListener("click", () => {
+$("#mostrarServicios").on("click", () => {
   servicios.forEach((value, indice) => {
-    const contenedor = document.createElement("div");
+    const contenedor = $("<div></div>").append(`
+      <h3>${value.nombre}</h3>
+      <p>Precio: ${value.precio}</p>
+    `);
 
-    const nombre = document.createElement("h3");
-    nombre.innerHTML = value.nombre;
-
-    const precio = document.createElement("p");
-    precio.innerHTML = `Precio: ${value.precio}`;
-
-    contenedor.appendChild(nombre);
-    contenedor.appendChild(precio);
-
-    serviciosDisponibles.appendChild(contenedor);
+    $("#serviciosDisponibles").append(contenedor);
   });
 });
