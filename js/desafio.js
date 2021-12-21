@@ -94,13 +94,22 @@ const servicios = [
   },
 ];
 
-$("#mostrarServicios").on("click", () => {
+$("#mostrarServicios").on("click", (e) => {
   servicios.forEach((value, indice) => {
     const contenedor = $("<div></div>").append(`
       <h3>${value.nombre}</h3>
       <p>Precio: ${value.precio}</p>
-    `);
+      `);
 
-    $("#serviciosDisponibles").append(contenedor);
+    $("#servicios").append(contenedor);
   });
+
+  e.target.innerText = "Ocultar";
+  $("#servicios")
+    .slideDown("fast")
+    .delay(2000)
+    .slideUp("fast", () => {
+      e.target.innerText = "Mostrar";
+      $("#servicios").html("");
+    });
 });
