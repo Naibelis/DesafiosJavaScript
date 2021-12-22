@@ -79,20 +79,15 @@ $("#cliente").on("change", (e) => {
   $("#nombreCliente").text(e.target.value);
 });
 
-const servicios = [
-  {
-    nombre: "Curso",
-    precio: 1500,
-  },
-  {
-    nombre: "Paseo",
-    precio: 2000,
-  },
-  {
-    nombre: "Adiestramiento",
-    precio: 3500,
-  },
-];
+
+const serviciosDir = "../data/servicios.json";
+let servicios = [];
+$.getJSON(serviciosDir, function (respuesta, estado) {
+  if (estado === "success") {
+    servicios = respuesta.servicios;
+    console.info("Servicios cargados")
+  } 
+});
 
 $("#mostrarServicios").on("click", (e) => {
   servicios.forEach((value, indice) => {

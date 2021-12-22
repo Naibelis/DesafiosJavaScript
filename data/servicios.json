@@ -1,0 +1,16 @@
+{
+  "servicios": [
+    {
+      "nombre": "Curso",
+      "precio": 1500
+    },
+    {
+      "nombre": "Paseo",
+      "precio": 2000
+    },
+    {
+      "nombre": "Adiestramiento",
+      "precio": 3500
+    }
+  ]
+}
